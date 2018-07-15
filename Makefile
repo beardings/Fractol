@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mponomar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/07/08 17:12:01 by mponomar          #+#    #+#              #
-#    Updated: 2018/07/08 17:12:08 by mponomar         ###   ########.fr        #
+#    Created: 2018/07/15 20:10:28 by mponomar          #+#    #+#              #
+#    Updated: 2018/07/15 20:10:34 by mponomar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ FT_INC = $(LIBFT)/includes
 CMP =	main.o \
 		hooks.o \
 		initdata.o \
-		fractols.o
+		fractols.o \
+		threads.o
 
 all: $(NAME)
 

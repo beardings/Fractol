@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mponomar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/06 21:33:43 by mponomar          #+#    #+#             */
-/*   Updated: 2018/07/06 22:39:44 by mponomar         ###   ########.fr       */
+/*   Created: 2018/07/15 20:14:44 by mponomar          #+#    #+#             */
+/*   Updated: 2018/07/15 20:17:41 by mponomar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static void	change_position(int key, t_fractol *fractol)
+static void		change_position(int key, t_fractol *fractol)
 {
-	double move;
+	double		move;
 
 	move = 0.1;
 	if (ZOOM > 2 && ZOOM <= 10)
@@ -37,21 +37,6 @@ static void	change_position(int key, t_fractol *fractol)
 		MY += move;
 	else if (key == 126)
 		MY -= move;
-}
-
-int				move_julia(int x, int y, t_fractol *fractol)
-{
-	if (fractol->num == 1)
-	{
-		mlx_clear_window(MLX, WIN);
-		if (x > 0 && x < WIDTH && y > 0 && y < HEIGHT)
-		{
-			CRE = -0.7 * x / 1000;
-			CIM = 0.27015 * y / 1000;
-		}
-		work_with_threads(fractol);
-	}
-	return (0);
 }
 
 int				mouse_hook(int keycode, int x, int y, t_fractol *fractol)
@@ -77,19 +62,17 @@ int				mouse_hook(int keycode, int x, int y, t_fractol *fractol)
 	return (0);
 }
 
-
-static void change_color_dynamic(int key, t_fractol *fractol)
+static void		change_color_dynamic(int key, t_fractol *fractol)
 {
-	
 	if (key == 69)
-		COLOR  -= 1000;
+		COLOR -= 1000;
 	else if (key == 78)
 		COLOR += 1000;
 }
 
-static void	change_color(int key, t_fractol *fractol)
+static void		change_color(int key, t_fractol *fractol)
 {
-	int		color;
+	int			color;
 
 	color = 0;
 	if (key == 18)
@@ -106,11 +89,10 @@ static void	change_color(int key, t_fractol *fractol)
 		color = BLUE_LIGHT;
 	else if (key == 26)
 		color = WHITE;
-
 	COLOR = color;
 }
 
-int			hook(int key, t_fractol *fractol)
+int				hook(int key, t_fractol *fractol)
 {
 	mlx_clear_window(MLX, WIN);
 	if (key == 53)
@@ -124,9 +106,9 @@ int			hook(int key, t_fractol *fractol)
 	else if (key == 69 || key == 78)
 		change_color_dynamic(key, fractol);
 	else if (key == 123 || key == 124 ||
-		key == 125 || key == 126)
+			key == 125 || key == 126)
 		change_position(key, fractol);
-	work_with_threads(fractol);	
+	work_with_threads(fractol);
 	mlx_put_image_to_window(MLX, WIN, IMG_P, 0, 0);
 	return (0);
 }

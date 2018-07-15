@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mponomar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/01 19:08:03 by mponomar          #+#    #+#             */
-/*   Updated: 2018/07/08 17:06:35 by mponomar         ###   ########.fr       */
+/*   Created: 2018/07/15 20:07:05 by mponomar          #+#    #+#             */
+/*   Updated: 2018/07/15 20:07:52 by mponomar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 # define WIDTH 1200
 # define HEIGHT 700
 
-
 # define MLX fractol->mlx
 # define WIN fractol->win
 # define IMG_P fractol->img
@@ -54,33 +53,32 @@ typedef	struct		s_fractol
 	void			*img;
 	int				*image;
 	char			num;
-	double zoom;
-	double move_x;
-	double move_y;
-	int max_iter;
-	double c_re;
-	double c_im;
-	int color;
-
+	double			zoom;
+	double			move_x;
+	double			move_y;
+	int				max_iter;
+	double			c_re;
+	double			c_im;
+	int				color;
 }					t_fractol;
 
-typedef struct 		s_threads
+typedef struct		s_threads
 {
-	t_fractol *copy;
-	int thread;
-	pthread_t	threads;
+	t_fractol		*copy;
+	int				thread;
+	pthread_t		threads;
 }					t_threads;
 
-
-int			exit_button(int key);
-void		print_error(char *str);
-t_fractol 	*init_fractol();
-void		init_window(t_fractol *fractol);
-void 		show_julia(int x, int y, t_fractol *fractol);
-int			hook(int key, t_fractol *fractol);
-void 		show_mandelbrot(int x, int y, t_fractol *fractol);
-void		work_with_threads(t_fractol *fractol);
-int			mouse_hook(int keycode, int x, int y, t_fractol *fractol);
-int				move_julia(int x, int y, t_fractol *fractol);
+int					exit_button(int key);
+void				print_error(char *str);
+t_fractol			*init_fractol();
+void				init_window(t_fractol *fractol);
+void				show_julia(int x, int y, t_fractol *fractol);
+int					hook(int key, t_fractol *fractol);
+void				show_mandelbrot(int x, int y, t_fractol *fractol);
+void				work_with_threads(t_fractol *fractol);
+int					mouse_hook(int keycode, int x, int y, t_fractol *fractol);
+int					move_julia(int x, int y, t_fractol *fractol);
+void				show_tricorn(int x, int y, t_fractol *fractol);
 
 #endif
