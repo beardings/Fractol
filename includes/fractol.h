@@ -46,6 +46,13 @@
 # define CIM fractol->c_im
 # define COLOR fractol->color
 
+# define PR varaibles.pr
+# define PI varaibles.pi
+# define NRE varaibles.new_re
+# define NIM varaibles.new_im
+# define ORE varaibles.old_re
+# define OIM varaibles.old_im
+
 typedef	struct		s_fractol
 {
 	void			*mlx;
@@ -61,6 +68,16 @@ typedef	struct		s_fractol
 	double			c_im;
 	int				color;
 }					t_fractol;
+
+typedef struct		s_varaibles
+{
+	double			pr;
+	double			pi;
+	double			new_re;
+	double			new_im;
+	double			old_re;
+	double			old_im;
+}					t_varaibles;
 
 typedef struct		s_threads
 {

@@ -12,7 +12,7 @@
 
 #include "../includes/fractol.h"
 
-int			move_julia(int x, int y, t_fractol *fractol)
+int				move_julia(int x, int y, t_fractol *fractol)
 {
 	if (fractol->num == 1)
 	{
@@ -27,24 +27,21 @@ int			move_julia(int x, int y, t_fractol *fractol)
 	return (0);
 }
 
-void		show_julia(int x, int y, t_fractol *fractol)
+void			show_julia(int x, int y, t_fractol *fractol)
 {
-	double	newRe;
-	double	newIm;
-	double	oldRe;
-	double	oldIm;
-	int		i;
+	int			i;
+	t_varaibles varaibles;
 
-	newRe = 1.5 * (x - WIDTH / 2) / (0.5 * ZOOM * WIDTH) + MX;
-	newIm = (y - HEIGHT / 2) / (0.5 * ZOOM * HEIGHT) + MY;
+	NRE = 1.5 * (x - WIDTH / 2) / (0.5 * ZOOM * WIDTH) + MX;
+	NIM = (y - HEIGHT / 2) / (0.5 * ZOOM * HEIGHT) + MY;
 	i = 0;
 	while (i < MITER)
 	{
-		oldRe = newRe;
-		oldIm = newIm;
-		newRe = oldRe * oldRe - oldIm * oldIm + CRE;
-		newIm = 2 * oldRe * oldIm + CIM;
-		if((newRe * newRe + newIm * newIm) > 4)
+		ORE = NRE;
+		OIM = NIM;
+		NRE = ORE * ORE - OIM * OIM + CRE;
+		NIM = 2 * ORE * OIM + CIM;
+		if ((NRE * NRE + NIM * NIM) > 4)
 			break ;
 		i++;
 	}
@@ -54,28 +51,23 @@ void		show_julia(int x, int y, t_fractol *fractol)
 		IMG[x + (y * WIDTH)] = COLOR * i;
 }
 
-void		show_mandelbrot(int x, int y, t_fractol *fractol)
+void			show_mandelbrot(int x, int y, t_fractol *fractol)
 {
-	double	pr;
-	double	pi;
-	double	newRe;
-	double	newIm;
-	double	oldRe;
-	double	oldIm;
-	int		i;
+	int			i;
+	t_varaibles varaibles;
 
-	pr = 1.5 * (x - WIDTH / 2) / (0.5 * ZOOM * WIDTH) + MX;
-	pi = (y - HEIGHT / 2) / (0.5 * ZOOM * HEIGHT) + MY;
-	newRe = 0;
-	newIm = 0;
+	PR = 1.5 * (x - WIDTH / 2) / (0.5 * ZOOM * WIDTH) + MX;
+	PI = (y - HEIGHT / 2) / (0.5 * ZOOM * HEIGHT) + MY;
+	NRE = 0;
+	NIM = 0;
 	i = 0;
 	while (i < MITER)
 	{
-		oldRe = newRe;
-		oldIm = newIm;
-		newRe = oldRe * oldRe - oldIm * oldIm + pr;
-		newIm = 2 * oldRe * oldIm + pi;
-		if ((newRe * newRe + newIm * newIm) > 4)
+		ORE = NRE;
+		OIM = NIM;
+		NRE = ORE * ORE - OIM * OIM + PR;
+		NIM = 2 * ORE * OIM + PI;
+		if ((NRE * NRE + NIM * NIM) > 4)
 			break ;
 		i++;
 	}
@@ -85,28 +77,23 @@ void		show_mandelbrot(int x, int y, t_fractol *fractol)
 		IMG[x + (y * WIDTH)] = COLOR * i;
 }
 
-void		show_tricorn(int x, int y, t_fractol *fractol)
+void			show_tricorn(int x, int y, t_fractol *fractol)
 {
-	double	pr;
-	double	pi;
-	double	newRe;
-	double	newIm;
-	double	oldRe;
-	double	oldIm;
-	int		i;
+	int			i;
+	t_varaibles varaibles;
 
-	pr = 1.5 * (x - WIDTH / 2) / (0.5 * ZOOM * WIDTH) + MX;
-	pi = (y - HEIGHT / 2) / (0.5 * ZOOM * HEIGHT) + MY;
-	newRe = 0;
-	newIm = 0;
+	PR = 1.5 * (x - WIDTH / 2) / (0.5 * ZOOM * WIDTH) + MX;
+	PI = (y - HEIGHT / 2) / (0.5 * ZOOM * HEIGHT) + MY;
+	NRE = 0;
+	NIM = 0;
 	i = 0;
 	while (i < MITER)
 	{
-		oldRe = newRe;
-		oldIm = newIm;
-		newIm = -2 * oldRe * oldIm + pi;
-		newRe = oldRe * oldRe - oldIm * oldIm + pr;
-		if ((newRe * newRe + newIm * newIm) > 4)
+		ORE = NRE;
+		OIM = NIM;
+		NIM = -2 * ORE * OIM + PI;
+		NRE = ORE * ORE - OIM * OIM + PR;
+		if ((NRE * NRE + NIM * NIM) > 4)
 			break ;
 		i++;
 	}
@@ -115,4 +102,3 @@ void		show_tricorn(int x, int y, t_fractol *fractol)
 	else
 		IMG[x + (y * WIDTH)] = COLOR * i;
 }
-
