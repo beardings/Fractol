@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mponomar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -31,8 +31,8 @@
 
 # define WHITE 0xFFFFFF
 
-# define WIDTH 1600
-# define HEIGHT 1200
+# define WIDTH 1200
+# define HEIGHT 700
 
 
 # define MLX fractol->mlx
@@ -64,13 +64,23 @@ typedef	struct		s_fractol
 
 }					t_fractol;
 
+typedef struct 		s_threads
+{
+	t_fractol *copy;
+	int thread;
+	pthread_t	threads;
+}					t_threads;
+
 
 int			exit_button(int key);
 void		print_error(char *str);
 t_fractol 	*init_fractol();
 void		init_window(t_fractol *fractol);
-void 		show_julia(t_fractol *fractol);
+void 		show_julia(int x, int y, t_fractol *fractol);
 int			hook(int key, t_fractol *fractol);
-void 		show_mandelbrot(t_fractol *fractol);
+void 		show_mandelbrot(int x, int y, t_fractol *fractol);
+void		work_with_threads(t_fractol *fractol);
+int			mouse_hook(int keycode, int x, int y, t_fractol *fractol);
+int				move_julia(int x, int y, t_fractol *fractol);
 
 #endif

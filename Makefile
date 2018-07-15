@@ -23,7 +23,7 @@ FT_INC = $(LIBFT)/includes
 CMP =	main.o \
 		hooks.o \
 		initdata.o \
-		julia.o
+		fractols.o
 
 all: $(NAME)
 

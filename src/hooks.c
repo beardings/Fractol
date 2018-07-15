@@ -12,51 +12,103 @@
 
 #include "../includes/fractol.h"
 
-// static void	change_position(int key, t_fdf *fdf)
-// {
+static void	change_position(int key, t_fractol *fractol)
+{
+	double move;
 
-// }
+	move = 0.1;
+	if (ZOOM > 2 && ZOOM <= 10)
+		move = 0.01;
+	else if (ZOOM > 10 && ZOOM <= 100)
+		move = 0.001;
+	else if (ZOOM > 100 && ZOOM <= 1000)
+		move = 0.0001;
+	else if (ZOOM > 1000 && ZOOM <= 10000)
+		move = 0.00001;
+	else if (ZOOM > 10000 && ZOOM <= 100000)
+		move = 0.000001;
+	else if (ZOOM > 100000)
+		move = 0.0000001;
+	if (key == 123)
+		MX -= move;
+	else if (key == 124)
+		MX += move;
+	else if (key == 125)
+		MY += move;
+	else if (key == 126)
+		MY -= move;
+}
 
-// static void	zoom_window(int key, t_fdf *fdf)
-// {
-// 	if (key == 69)
-// 		fdf->size *= 0.9;
-// 	else if (key == 78)
-// 		fdf->size *= 1.1;
-// }
+int				move_julia(int x, int y, t_fractol *fractol)
+{
+	if (fractol->num == 1)
+	{
+		mlx_clear_window(MLX, WIN);
+		if (x > 0 && x < WIDTH && y > 0 && y < HEIGHT)
+		{
+			CRE = -0.7 * x / 1000;
+			CIM = 0.27015 * y / 1000;
+		}
+		work_with_threads(fractol);
+	}
+	return (0);
+}
 
-// static void	change_z(int key, t_fdf *fdf)
-// {
+int				mouse_hook(int keycode, int x, int y, t_fractol *fractol)
+{
+	x = 0;
+	y = 0;
+	if (keycode == 4 || keycode == 5)
+	{
+		mlx_clear_window(MLX, WIN);
+		if (keycode == 4)
+		{
+			ZOOM *= 1.1;
+			MITER += 10;
+		}
+		else
+		{
+			ZOOM *= 0.9;
+			if (MITER > 100)
+				MITER -= 10;
+		}
+		work_with_threads(fractol);
+	}
+	return (0);
+}
 
-// }
 
-// static void	change_color(int key, t_fdf *fdf)
-// {
-// 	int		color;
-// 	t_coor	*tmp;
+static void change_color_dynamic(int key, t_fractol *fractol)
+{
+	
+	if (key == 69)
+		COLOR  -= 1000;
+	else if (key == 78)
+		COLOR += 1000;
+}
 
-// 	color = 0;
-// 	tmp = fdf->coor;
-// 	if (key == 18)
-// 		color = GREEN;
-// 	else if (key == 19)
-// 		color = GREEN_LIGHT;
-// 	else if (key == 20)
-// 		color = RED;
-// 	else if (key == 21)
-// 		color = RED_CRIMSON;
-// 	else if (key == 22)
-// 		color = BLUE;
-// 	else if (key == 23)
-// 		color = BLUE_LIGHT;
-// 	else if (key == 26)
-// 		color = WHITE;
-// 	while (tmp)
-// 	{
-// 		tmp->color = color;
-// 		tmp = tmp->next;
-// 	}
-// }
+static void	change_color(int key, t_fractol *fractol)
+{
+	int		color;
+
+	color = 0;
+	if (key == 18)
+		color = GREEN;
+	else if (key == 19)
+		color = GREEN_LIGHT;
+	else if (key == 20)
+		color = RED;
+	else if (key == 21)
+		color = RED_CRIMSON;
+	else if (key == 22)
+		color = BLUE;
+	else if (key == 23)
+		color = BLUE_LIGHT;
+	else if (key == 26)
+		color = WHITE;
+
+	COLOR = color;
+}
 
 int			hook(int key, t_fractol *fractol)
 {
@@ -66,11 +118,15 @@ int			hook(int key, t_fractol *fractol)
 		mlx_destroy_window(MLX, WIN);
 		exit(0);
 	}
-
-	if (fractol->num == 1)
-		show_julia(fractol);
-	else if (fractol->num == 2)
-		show_mandelbrot(fractol);
+	else if (key == 18 || key == 19 || key == 20 ||
+			key == 21 || key == 22 || key == 23 || key == 26)
+		change_color(key, fractol);
+	else if (key == 69 || key == 78)
+		change_color_dynamic(key, fractol);
+	else if (key == 123 || key == 124 ||
+		key == 125 || key == 126)
+		change_position(key, fractol);
+	work_with_threads(fractol);	
 	mlx_put_image_to_window(MLX, WIN, IMG_P, 0, 0);
 	return (0);
 }
