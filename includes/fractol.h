@@ -18,6 +18,7 @@
 # include "../libft/header/get_next_line.h"
 # include <math.h>
 # include <mlx.h>
+# include <pthread.h>
 
 # define GREEN 0x008000
 # define GREEN_LIGHT 0x00FF00
@@ -33,23 +34,43 @@
 # define WIDTH 1600
 # define HEIGHT 1200
 
-typedef struct		s_coor
-{
-	float			x;
-	float			y;
-	float			z;
-	int				color;
-	struct s_coor	*next;
-}					t_coor;
+
+# define MLX fractol->mlx
+# define WIN fractol->win
+# define IMG_P fractol->img
+# define IMG fractol->image
+# define ZOOM fractol->zoom
+# define MX fractol->move_x
+# define MY fractol->move_y
+# define MITER fractol->max_iter
+# define CRE fractol->c_re
+# define CIM fractol->c_im
+# define COLOR fractol->color
 
 typedef	struct		s_fractol
 {
 	void			*mlx;
 	void			*win;
+	void			*img;
+	int				*image;
+	char			num;
+	double zoom;
+	double move_x;
+	double move_y;
+	int max_iter;
+	double c_re;
+	double c_im;
+	int color;
 
-}					t_fdf;
+}					t_fractol;
 
 
-int					ft_atoi_base_16(const char *str);
+int			exit_button(int key);
+void		print_error(char *str);
+t_fractol 	*init_fractol();
+void		init_window(t_fractol *fractol);
+void 		show_julia(t_fractol *fractol);
+int			hook(int key, t_fractol *fractol);
+void 		show_mandelbrot(t_fractol *fractol);
 
 #endif

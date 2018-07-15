@@ -21,7 +21,9 @@ LIBFT = libft/
 FT_INC = $(LIBFT)/includes
 
 CMP =	main.o \
-		atoi_base_16.o
+		hooks.o \
+		initdata.o \
+		julia.o
 
 all: $(NAME)
 
