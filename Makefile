@@ -24,7 +24,8 @@ CMP =	main.o \
 		hooks.o \
 		initdata.o \
 		fractols.o \
-		threads.o
+		threads.o \
+		bonus_fractols.o
 
 all: $(NAME)
 

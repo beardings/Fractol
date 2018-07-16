@@ -108,6 +108,9 @@ int				hook(int key, t_fractol *fractol)
 	else if (key == 123 || key == 124 ||
 			key == 125 || key == 126)
 		change_position(key, fractol);
+	else if (key == 83 || key == 84 || key == 85 || key == 86 ||
+		key == 87 || key == 88 || key == 89 || key == 91)
+		change_fractol(key, fractol);
 	work_with_threads(fractol);
 	mlx_put_image_to_window(MLX, WIN, IMG_P, 0, 0);
 	return (0);

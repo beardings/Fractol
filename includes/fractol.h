@@ -97,5 +97,11 @@ void				work_with_threads(t_fractol *fractol);
 int					mouse_hook(int keycode, int x, int y, t_fractol *fractol);
 int					move_julia(int x, int y, t_fractol *fractol);
 void				show_tricorn(int x, int y, t_fractol *fractol);
+void				show_heart(int x, int y, t_fractol *fractol);
+void				show_buffalo(int x, int y, t_fractol *fractol);
+void				show_celtic_heart(int x, int y, t_fractol *fractol);
+void				show_buring_ship(int x, int y, t_fractol *fractol);
+void				show_perpendicular_celtic(int x, int y, t_fractol *fractol);
+void				change_fractol(int key, t_fractol *fractol);
 
 #endif

@@ -12,6 +12,26 @@
 
 #include "../includes/fractol.h"
 
+void			check_kind_fractols(int x, int y, t_threads *threads)
+{
+	if (threads->copy->num == 1)
+		show_julia(x, y, threads->copy);
+	else if (threads->copy->num == 2)
+		show_mandelbrot(x, y, threads->copy);
+	else if (threads->copy->num == 3)
+		show_tricorn(x, y, threads->copy);
+	else if (threads->copy->num == 4)
+		show_heart(x, y, threads->copy);
+	else if (threads->copy->num == 5)
+		show_buffalo(x, y, threads->copy);
+	else if (threads->copy->num == 6)
+		show_celtic_heart(x, y, threads->copy);
+	else if (threads->copy->num == 7)
+		show_buring_ship(x, y, threads->copy);
+	else if (threads->copy->num == 8)
+		show_perpendicular_celtic(x, y, threads->copy);
+}
+
 void			*work_while(void *thr)
 {
 	int			y;
@@ -27,12 +47,7 @@ void			*work_while(void *thr)
 		x = 0;
 		while (x < WIDTH)
 		{
-			if (threads->copy->num == 1)
-				show_julia(x, y, threads->copy);
-			else if (threads->copy->num == 2)
-				show_mandelbrot(x, y, threads->copy);
-			else if (threads->copy->num == 3)
-				show_tricorn(x, y, threads->copy);
+			check_kind_fractols(x, y, threads);
 			x++;
 		}
 		y++;
@@ -60,4 +75,24 @@ void			work_with_threads(t_fractol *fractol)
 		i++;
 	}
 	mlx_put_image_to_window(MLX, WIN, IMG_P, 0, 0);
+}
+
+void			change_fractol(int key, t_fractol *fractol)
+{
+	if (key == 83)
+		fractol->num = 1;
+	else if (key == 84)
+		fractol->num = 2;
+	else if (key == 85)
+		fractol->num = 3;
+	else if (key == 86)
+		fractol->num = 4;
+	else if (key == 87)
+		fractol->num = 5;
+	else if (key == 88)
+		fractol->num = 6;
+	else if (key == 89)
+		fractol->num = 7;
+	else if (key == 91)
+		fractol->num = 8;
 }
