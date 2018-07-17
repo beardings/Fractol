@@ -103,5 +103,6 @@ void				show_celtic_heart(int x, int y, t_fractol *fractol);
 void				show_buring_ship(int x, int y, t_fractol *fractol);
 void				show_perpendicular_celtic(int x, int y, t_fractol *fractol);
 void				change_fractol(int key, t_fractol *fractol);
+void				come_back(t_fractol *fractol);
 
 #endif

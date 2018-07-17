@@ -37,10 +37,13 @@ void		print_info(void)
 	ft_printf("          - celtic heart\n");
 	ft_printf("          - buring ship\n");
 	ft_printf("          - perpendicular celtic\n\n");
-	ft_printf("Actions:  - static color [1,2..7]\n");
+	ft_printf("Actions:  - static color [1,2..7] left side on keyboard\n");
 	ft_printf("          - dynamic color [+ / -]\n");
 	ft_printf("          - change position [ ⬆️  ⬇️  ⬅️  ➡️  ]\n");
 	ft_printf("          - zoom 🔎 [rotate 🖱  wheel]\n");
+	ft_printf("          - return begining position [space]\n");
+	ft_printf("          - change fractol [1,2..8] right side on keyboard\n");
+	ft_printf("          - exit [esc, ❌]\n");
 	ft_printf("--------------------------------------------\n");
 	exit(0);
 }

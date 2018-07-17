@@ -96,3 +96,11 @@ void			change_fractol(int key, t_fractol *fractol)
 	else if (key == 91)
 		fractol->num = 8;
 }
+
+void			come_back(t_fractol *fractol)
+{
+	MX = 0;
+	MY = 0;
+	COLOR = RED_CRIMSON;
+	ZOOM = 0.5;
+}
